@@ -48,16 +48,23 @@ with open("user_stories.csv", "r") as f:
                 print(f"created epic {issue_data['Epic']}")
         # append Jira tmp issue to list
         issue_is_done = issue_data.get("Fait") == "TRUE"
+        description = issue_data["Détails"]
+        if "Chiffrage front" in issue_data and "Chiffrage back" in issue_data:
+            description += f"""
+            \n
+            Front: {issue_data.get('Chiffrage front', 0)}j\n
+            Back: {issue_data.get('Chiffrage back', 0)}j\n
+            """
         issue = {
             "project": {"key": JIRA_PROJECT},
             "summary": f"En tant que {issue_data.get('En tant que...')}, je peux {issue_data.get('Je peux...')} dans le but de {issue_data.get('Dans le but de...')}",
-            "description": issue_data["Détails"],
+            "description": description,
             "issuetype": {"name": "Story"},
             "parent": {"id": created_epics[issue_data["Epic"]]},
         }
         if story_points_field and issue_data.get("Total"):
             try:
-                issue[story_points_field.get("id")] = int(issue_data.get("Total", 0))
+                issue[story_points_field.get("id")] = float(issue_data.get("Total", 0))
             except TypeError:
                 print(f"could not parse {issue_data.get('Total')}")
 
