@@ -152,4 +152,4 @@ cython_debug/
 #.idea/
 *.csv
 
-config/__init.py
+config/__init__.py
