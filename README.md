@@ -6,6 +6,7 @@
 API_TOKEN = ""
 ATLASSIAN_ACCOUNT = "test@test.com"
 JIRA_PROJECT = "TS" # project code in Jira
+JIRA_MAX_ISSUES = 50
 ```
 
 ## Setup
