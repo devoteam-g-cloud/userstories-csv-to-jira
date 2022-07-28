@@ -1,6 +1,6 @@
 # CSV to Jira
 Script to create issues and epics in Jira from a spreadsheet filled with User stories, converted to CSV. 
-Format was initialized with French headers, can be changed in the code according to your need
+Format was initialized with English headers, can be changed in the code according to your need
 
 ## Config file
 Copy the `config/__init__template.py` into `config/__init__.py` and fill in the variables required
