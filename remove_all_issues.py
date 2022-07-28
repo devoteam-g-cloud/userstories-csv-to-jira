@@ -1,10 +1,13 @@
-from config import ATLASSIAN_ACCOUNT, API_TOKEN, JIRA_PROJECT
+from config import ATLASSIAN_ACCOUNT, API_TOKEN, JIRA_PROJECT, JIRA_URL
 from jira import JIRA
 
-jira_client = JIRA("https://g-cloud.atlassian.net/", basic_auth=(ATLASSIAN_ACCOUNT, API_TOKEN))
+jira_client = JIRA(JIRA_URL, basic_auth=(ATLASSIAN_ACCOUNT, API_TOKEN))
 
 
 def get_all_issues(project_name=JIRA_PROJECT, fields=["id"]):
+    """
+    Removes all issues from a jira project
+    """
     issues = []
     i = 0
     chunk_size = 100
